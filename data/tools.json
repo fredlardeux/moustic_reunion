@@ -17,7 +17,7 @@
     "github_download_url": "https://github.com/fredlardeux/moustic_reunion/releases/latest/download/moustic_reunion.apk",
 
     "zenodo_record": "19097950",
-    "zenodo_file": "Moustic_reunion.apk",
+    "zenodo_file": "moustic_reunion.apk",
     "zenodo_doi": "10.5281/zenodo.19097950",
 
     "tutorial": "moustic_reunion_fr.json"
