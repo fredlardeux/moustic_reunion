@@ -3,19 +3,22 @@
     "id": "moustic_reunion",
     "title": "Moustic Réunion",
     "description": "Clé dichotomique illustrée pour l'identification morphologique des moustiques de l'île de La Réunion.",
+    
     "image": "images/logo_moustic_reunion.png",
+    
     "lang": "fr",
     "platform": "android",
     "taxa": "moustiques",
     "category": "identification",
 
-    "github_repo": "fredlardeux/entomo_tools",
-    "github_asset_name": "2025-05-16_moustic_Reunion.apk",
+    "github_repo": "fredlardeux/moustic_reunion",
+    "github_asset_name": "moustic_reunion.apk",
+
     "github_download_url": "https://github.com/fredlardeux/moustic_reunion/releases/latest/download/moustic_reunion.apk",
 
-    "zenodo_id": "https://zenodo.org/records/19097950/files/Moustic_reunion.apk?download=1",
-    "zenodo_doi": "https://doi.org/10.5281/zenodo.19097949",
     "zenodo_record": "19097950",
+    "zenodo_file": "Moustic_reunion.apk",
+    "zenodo_doi": "10.5281/zenodo.19097950",
 
     "tutorial": "moustic_reunion_fr.json"
   }
