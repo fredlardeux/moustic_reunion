@@ -162,6 +162,38 @@ async function loadData() {
     }
 }
 
+
+
+async function openTutorial(file) {
+    try {
+        const path = `tutoriels/${file}`;
+        const res = await fetch(path);
+
+        if (!res.ok) {
+            throw new Error("Fichier introuvable: " + path);
+        }
+
+        const data = await res.json();
+
+        document.getElementById("modalContent").innerHTML = `
+            <h2>${data.title || "Tutoriel"}</h2>
+            <ol>
+                ${(data.steps || []).map(s => `<li>${s}</li>`).join("")}
+            </ol>
+        `;
+
+        document.getElementById("modal").style.display = "block";
+
+    } catch (e) {
+        console.error(e);
+        alert("Erreur chargement tutoriel");
+    }
+}
+
+
+
+
+
 /* SAFE RENDER */
 function renderOneCard(t, stats) {
 
@@ -194,7 +226,7 @@ document.getElementById("toolsContainer").innerHTML = `
             Download Zenodo
         </a>
 
-        <button class="install-btn" onclick="alert('Tutorial: ${t.tutorial || ''}')">
+        <button class="install-btn" onclick="openTutorial('${t.tutorial}')">
             Installation
         </button>
 
@@ -221,10 +253,28 @@ document.getElementById("toolsContainer").innerHTML = `
 `;
 }
 
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+
 /* INIT */
 loadData();
 
 </script>
+
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); z-index:9999;">
+
+    <div style="background:white; max-width:600px; margin:10% auto; padding:20px; border-radius:10px;">
+        
+        <button onclick="closeModal()" style="float:right;">✖</button>
+
+        <div id="modalContent"></div>
+
+    </div>
+</div>
+
 
 </body>
 </html>
