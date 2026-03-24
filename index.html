@@ -190,7 +190,7 @@ document.getElementById("toolsContainer").innerHTML = `
             Download GitHub
         </a>
 
-        <a class="download-btn" href="${t.zenodo_id}" target="_blank">
+        <a class="download-btn" href="https://zenodo.org/records/${t.zenodo_record}/files/${t.zenodo_file}?download=1" target="_blank">
             Download Zenodo
         </a>
 
@@ -198,7 +198,7 @@ document.getElementById("toolsContainer").innerHTML = `
             Installation
         </button>
 
-        <a class="install-btn" href="${t.zenodo_doi}" target="_blank">
+        <a class="install-btn" href="https://zenodo.org/records/${t.zenodo_record}" target="_blank">
             Zenodo DOI
         </a>
     </div>
