@@ -1,0 +1,29 @@
+name: Update tool stats
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # chaque jour 03:00
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run update script
+        run: node scripts/update_stats.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/stats.json
+          git commit -m "update stats" || exit 0
+          git push
