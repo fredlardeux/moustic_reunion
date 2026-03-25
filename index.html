@@ -281,8 +281,6 @@ async function loadAbout(file) {
 
         const data = await res.json();
 
-        console.log("ABOUT DATA:", data);
-
         let textHTML = "";
 
         if (Array.isArray(data.text)) {
@@ -291,18 +289,22 @@ async function loadAbout(file) {
             textHTML = `<p>${data.text || ""}</p>`;
         }
 
-        /* 🆕 GESTION IMAGE OU CAROUSEL */
         let imagesHTML = "";
 
         if (Array.isArray(data.images)) {
             imagesHTML = `
-                <div class="carousel">
-                    ${data.images.map((img, i) => `
-                        <img src="${img}" class="carousel-img ${i === 0 ? 'active' : ''}">
-                    `).join("")}
+                <div class="carousel-wrapper">
 
                     <button class="prev" onclick="changeSlide(-1)">❮</button>
+
+                    <div class="carousel">
+                        ${data.images.map((img, i) => `
+                            <img src="${img}" class="carousel-img ${i === 0 ? 'active' : ''}">
+                        `).join("")}
+                    </div>
+
                     <button class="next" onclick="changeSlide(1)">❯</button>
+
                 </div>
             `;
         } else if (data.image) {
@@ -324,21 +326,6 @@ async function loadAbout(file) {
     } catch (e) {
         console.error("Erreur chargement about:", e);
     }
-
-    <div class="carousel-wrapper">
-    <button class="prev" onclick="changeSlide(-1)">❮</button>
-
-    <div class="carousel">
-        ...
-    </div>
-
-    <button class="next" onclick="changeSlide(1)">❯</button>
-    </div>
-
-
-
-
-    
 }
 
 
