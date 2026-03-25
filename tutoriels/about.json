@@ -1,5 +1,5 @@
 {
   "title": "Présentation de l'application",
-  "text": "Moustic Réunion est une clé dichotomique interactive permettant l’identification morphologique des moustiques. Elle est conçue pour les entomologistes, les agents de terrain et les chercheurs.",
-  "image": "images/screenshot_app.png"
+  "text": "Moustic Réunion est une clé dichotomique interactive permettant l’identification morphologique des moustiques. Elle est conçue pour les entomologistes, les agents de terrain et les chercheurs. C'est uen application Android qui fonctionne sur téléphonne portable. Son interface est en français",
+  "image": "/images/screenshot_app.png"
 }
