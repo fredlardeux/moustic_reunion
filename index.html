@@ -181,13 +181,18 @@ async function loadData() {
         toolsData = Array.isArray(tools) ? tools : [];
         currentStats = stats || {};
 
+        const container = document.getElementById("toolsContainer");
+        container.innerHTML = "";
+
         if (toolsData.length === 0) {
-            document.getElementById("toolsContainer").innerHTML =
-                "<p style='text-align:center'>Aucune donnée tools.json</p>";
+            container.innerHTML = "<p style='text-align:center'>Aucune donnée tools.json</p>";
             return;
         }
 
-        renderOneCard(toolsData[0], currentStats);
+        toolsData.forEach(tool => {
+            container.innerHTML += renderCard(tool, currentStats);
+        });
+
         loadAbout("about.json");
 
     } catch (err) {
@@ -197,7 +202,6 @@ async function loadData() {
             "<p style='text-align:center;color:red'>Erreur chargement des données</p>";
     }
 }
-
 
 
 async function openTutorial(file) {
@@ -268,19 +272,19 @@ async function loadAbout(file) {
 
 
 /* SAFE RENDER */
-function renderOneCard(t, stats) {
 
-if (!t) return;
+function renderCard(t, stats) {
+
+if (!t) return "";
 
 const st = stats?.[t.id] || {};
 
-document.getElementById("toolsContainer").innerHTML = `
+return `
 <div class="tool">
 
     <img src="${t.image || ''}">
 
     <div class="tool-content">
-        
 
         <h2>${t.title || 'Sans titre'}</h2>
 
@@ -291,7 +295,7 @@ document.getElementById("toolsContainer").innerHTML = `
 
         <p>${t.description || ''}</p>
 
-       <a class="download-btn" href="${t.github_download_url}" target="_blank">
+        <a class="download-btn" href="${t.github_download_url}" target="_blank">
             Download GitHub
         </a>
 
@@ -309,22 +313,20 @@ document.getElementById("toolsContainer").innerHTML = `
     </div>
 
     <div class="stats">
-    <div><b>Version:</b> ${st.github_version || "-"}</div>
+        <div><b>Version:</b> ${st.github_version || "-"}</div>
+        <div><b>Total downloads:</b> ${st.total_downloads ?? "-"}</div>
 
-    <div><b>Total downloads:</b> ${st.total_downloads ?? "-"}</div>
-
-    <div style="font-size:0.8em;opacity:0.7">
-        GitHub: ${st.github_downloads ?? "-"}<br>
-        Zenodo: ${st.zenodo_downloads ?? "-"}
+        <div style="font-size:0.8em;opacity:0.7">
+            GitHub: ${st.github_downloads ?? "-"}<br>
+            Zenodo: ${st.zenodo_downloads ?? "-"}
+        </div>
     </div>
-
-    
-    
-</div>
 
 </div>
 `;
 }
+
+    
 
 function closeModal() {
     document.getElementById("modal").style.display = "none";
