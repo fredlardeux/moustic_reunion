@@ -226,27 +226,24 @@ async function openTutorial(file) {
     }
 }
 
+
 async function loadAbout(file) {
     try {
         const res = await fetch("tutoriels/" + file);
         const data = await res.json();
 
+        const textHTML = Array.isArray(data.text)
+            ? data.text.map(p => `<p>${p}</p>`).join("")
+            : `<p>${(data.text || "").replace(/\n/g, "<br>")}</p>`;
+
         document.getElementById("aboutSection").innerHTML = `
             <div class="about">
                 <div class="about-text">
-                    <h2>${data.title}</h2>
-
-                    ${Array.isArray(data.text)
-                        ? data.text.map(p => `<p>${p}</p>`).join("")
-                        : `<p>${data.text}</p>`
-                    }
-
-
-
-                    
+                    <h2>${data.title || ""}</h2>
+                    ${textHTML}
                 </div>
                 <div class="about-image">
-                    <img src="${data.image}">
+                    <img src="${data.image || ""}" alt="illustration">
                 </div>
             </div>
         `;
@@ -255,6 +252,9 @@ async function loadAbout(file) {
     }
 }
 
+
+
+    
 
 
 /* SAFE RENDER */
