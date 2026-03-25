@@ -235,7 +235,15 @@ async function loadAbout(file) {
             <div class="about">
                 <div class="about-text">
                     <h2>${data.title}</h2>
-                    <p>${data.text}</p>
+
+                    ${Array.isArray(data.text)
+                        ? data.text.map(p => `<p>${p}</p>`).join("")
+                        : `<p>${data.text}</p>`
+                    }
+
+
+
+                    
                 </div>
                 <div class="about-image">
                     <img src="${data.image}">
