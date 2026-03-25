@@ -230,11 +230,22 @@ async function openTutorial(file) {
 async function loadAbout(file) {
     try {
         const res = await fetch("tutoriels/" + file);
+
+        if (!res.ok) {
+            throw new Error("HTTP error " + res.status);
+        }
+
         const data = await res.json();
 
-        const textHTML = Array.isArray(data.text)
-            ? data.text.map(p => `<p>${p}</p>`).join("")
-            : `<p>${(data.text || "").replace(/\n/g, "<br>")}</p>`;
+        console.log("ABOUT DATA:", data);
+
+        let textHTML = "";
+
+        if (Array.isArray(data.text)) {
+            textHTML = data.text.map(t => `<p>${t}</p>`).join("");
+        } else {
+            textHTML = `<p>${data.text || ""}</p>`;
+        }
 
         document.getElementById("aboutSection").innerHTML = `
             <div class="about">
@@ -243,16 +254,15 @@ async function loadAbout(file) {
                     ${textHTML}
                 </div>
                 <div class="about-image">
-                    <img src="${data.image || ""}" alt="illustration">
+                    <img src="${data.image || ""}" alt="">
                 </div>
             </div>
         `;
+
     } catch (e) {
         console.error("Erreur chargement about:", e);
     }
 }
-
-
 
     
 
