@@ -5,7 +5,7 @@
     "Elle permet l’identification morphologique des moustiques.",
     "Elle est conçue pour les entomologistes et agents de terrain.",
     "Elle fonctionne sur téléphone portable équipé d'Android.",
-    "Son interface est en français2."
+    "Son interface est en français."
   ],
   "images": [
     "tutoriels/images/Screenshot_app_1.png",
@@ -16,7 +16,6 @@
     "tutoriels/images/Screenshot_app_6.png",
     "tutoriels/images/Screenshot_app_7.png",
     "tutoriels/images/Screenshot_app_8.png",
-    "tutoriels/images/Screenshot_app_9.png",
-    "tutoriels/images/Screenshot_app_9.jpg"
-  ]
+    "tutoriels/images/Screenshot_app_9.png"
+   ]
 }
