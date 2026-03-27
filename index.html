@@ -155,16 +155,20 @@ footer.footer {
 
 .carousel {
     position: relative;
-    width: 100%;
     max-width: 400px; /* important pour colonne */
     overflow: hidden;
     margin: auto;
+    height: auto;
 }
 
 .carousel-img {
     display: none;
     width: 100%;
     border-radius: 10px;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    
 }
 
 .carousel-img.active {
